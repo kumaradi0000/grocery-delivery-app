@@ -1,15 +1,20 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  auth0Id:{
+  _id: ObjectId,
+  auth0Id: {
     type: String,
     required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   name: {
+    type: String,
+  },
+  phoneNo: {
     type: String,
   },
   city: {
