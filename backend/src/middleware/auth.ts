@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
 import { auth } from "express-oauth2-jwt-bearer";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user";
 
@@ -29,18 +29,21 @@ export const jwtParse = async (
     return res.sendStatus(401);
   }
 
-  const token = authorization.split(" "[1]);
+ 
+  const token = authorization.split(" ")[1];
 
   try {
     const decoded = jwt.decode(token) as jwt.JwtPayload;
     const auth0Id = decoded.sub;
-    const user = await User.findOne({auth0Id});
 
-    if(!user) {
-      return res.status(401);
+    const user = await User.findOne({ auth0Id });
+
+    if (!user) {
+      return res.sendStatus(401);
     }
+
     req.auth0Id = auth0Id as string;
-    req.userId = user.db.toString();
+    req.userId = user.id;
     next();
   } catch (error) {
     return res.sendStatus(401);
