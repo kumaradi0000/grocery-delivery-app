@@ -95,7 +95,7 @@ const DetailPage = () => {
         name: userFormData.name,
         addressLine1: userFormData.addressLine1,
         city: userFormData.city,
-        country: userFormData.country,
+        phoneNo: userFormData.phoneNo,
         email: userFormData.email as string,
       },
     };
@@ -114,7 +114,7 @@ const DetailPage = () => {
         <img
           src={restaurant.imageUrl}
           className="rounded-md object-cover h-full w-full"
-        />
+         alt = ""/>
       </AspectRatio>
       <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-32">
         <div className="flex flex-col gap-4">
